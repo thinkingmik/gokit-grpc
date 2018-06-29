@@ -1,0 +1,22 @@
+syntax = "proto3";
+package pb;
+
+service Car {
+  rpc GetCar(GetCarRequest) returns (CarResponse) {}
+  rpc CreateCar(CreateCarRequest) returns (CarResponse) {}
+}
+
+message GetCarRequest {
+	int32 id = 1;
+}
+
+message CreateCarRequest {
+  string name = 1;
+  string manifacturer = 2;
+}
+
+message CarResponse {
+	int32 id = 1;
+  string name = 2;
+  string manifacturer = 3;
+}
