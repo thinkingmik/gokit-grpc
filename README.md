@@ -7,7 +7,7 @@ cd $GOPATH/src/gokit-grpc/car-microservice
 go run main.go
 ```
 
-Run your *client* node microservices with:
+Run your *client* node microservice with:
 
 ```bash
 cd $GOPATH/src/gokit-grpc/car-client
