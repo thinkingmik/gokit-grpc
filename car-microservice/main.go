@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"gokit-grpc/car-microservice/car"
-	"gokit-grpc/car-microservice/database"
+	"gokit-grpc/car-microservice/datastore"
 	"gokit-grpc/car-microservice/pb"
+	"log"
 	"net"
 
 	"google.golang.org/grpc"
@@ -13,7 +14,14 @@ import (
 
 func main() {
 	ctx := context.Background()
-	carService := &car.CarService{database.NewDBCarRepository()}
+	ds, err := datastore.CreateDatastore(map[string]string{
+		"DATASTORE": "mysql",
+		"DSN":       "root:root@tcp(127.0.0.1:3306)/golang",
+	})
+	if err != nil {
+		log.Panicf("Failed to create datastore", err.Error())
+	}
+	carService := &car.CarService{ds}
 	errors := make(chan error)
 
 	go func() {

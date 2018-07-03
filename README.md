@@ -54,3 +54,11 @@ protoc example.proto --go_out=plugins=grpc:.
 ```
 
 This command generates an `example.pb.go` file.
+
+
+# Links
+
+1. https://matthewbrown.io/2016/01/23/factory-pattern-in-golang/
+2. https://www.alexedwards.net/blog/organising-database-access
+
+

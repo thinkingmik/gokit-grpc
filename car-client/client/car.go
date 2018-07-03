@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-type CarClient interface {
+type ICarClient interface {
 	GetCar(id int32) *pb.CarResponse
 	CreateCar(name string, manifacturer string) *pb.CarResponse
 }
@@ -48,6 +48,6 @@ func (c *CarGRPCClient) CreateCar(name string, manifacturer string) *pb.CarRespo
 	return res
 }
 
-func NewCarGRPCClient(host string) *CarGRPCClient {
+func NewCarGRPCClient(host string) ICarClient {
 	return &CarGRPCClient{NewGRPCClient(host)}
 }

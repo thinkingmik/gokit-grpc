@@ -1,22 +1,25 @@
 package car
 
 import (
-	"gokit-grpc/car-microservice/database"
+	"gokit-grpc/car-microservice/datastore"
+	"gokit-grpc/car-microservice/models"
 )
 
-type Service interface {
-	GetCar(id int32) (*database.Car, error)
-	CreateCar(name string, manifacturer string) (*database.Car, error)
+type IService interface {
+	GetCar(id int32) (*models.Car, error)
+	CreateCar(name string, manifacturer string) (*models.Car, error)
 }
 
 type CarService struct {
-	Repository database.CarRepository
+	Repository datastore.IDataStore
 }
 
-func (s *CarService) GetCar(id int32) (*database.Car, error) {
+// Business logic here
+
+func (s *CarService) GetCar(id int32) (*models.Car, error) {
 	return s.Repository.FindById(id)
 }
 
-func (s *CarService) CreateCar(name string, manifacturer string) (*database.Car, error) {
+func (s *CarService) CreateCar(name string, manifacturer string) (*models.Car, error) {
 	return s.Repository.Create(name, manifacturer)
 }

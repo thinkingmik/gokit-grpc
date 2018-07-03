@@ -26,7 +26,9 @@ type Endpoints struct {
 	CreateCarEndpoint endpoint.Endpoint
 }
 
-func MakeGetCarEndpoint(svc Service) endpoint.Endpoint {
+// Validation logic here
+
+func MakeGetCarEndpoint(svc IService) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		request := req.(GetCarRequest)
 		car, _ := svc.GetCar(request.ID)
@@ -37,7 +39,7 @@ func MakeGetCarEndpoint(svc Service) endpoint.Endpoint {
 	}
 }
 
-func MakeCreateCarEndpoint(svc Service) endpoint.Endpoint {
+func MakeCreateCarEndpoint(svc IService) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		request := req.(CreateCarRequest)
 		car, _ := svc.CreateCar(request.Name, request.Manifacturer)
